@@ -1,0 +1,74 @@
+<html>
+<head>
+<style>
+#f_users{
+  width:100%;
+  padding:10px;
+}
+
+#u-list{
+  margin:0;
+  padding:0;
+}
+
+#u-list li{
+  list-style:none;
+  padding:10px;
+  margin:5px 0;
+  border: 1px solid #e4e4e4;
+}
+</style>
+</head>
+
+<body>
+<input type="text" placeholder="Search Users" id="f_users"/>
+
+<ul id="u-list">
+
+</ul>
+
+<script>
+
+let users = [
+  'suraj',
+  'rahul',
+  'nikita',
+  'ishu',
+  'aman',
+  'hermeeet',
+  'khaleesi',
+  'laksh',
+  'vinay'
+];
+
+ul = document.getElementById("u-list");
+
+let render_lists = function(lists){
+  let li = "";
+  for(index in lists){
+    li += "<li>" + lists[index] + "</li>";
+  }
+  ul.innerHTML = li;
+}
+
+render_lists(users);
+
+// lets filters it
+input = document.getElementById('f_users');
+
+let filterUsers = function(event){
+  keyword = input.value.toLowerCase();
+  filtered_users = users.filter(function(user){
+        user = user.toLowerCase();
+       return user.indexOf(keyword) > -1;
+  });
+  
+  render_lists(filtered_users);
+}
+
+input.addEventListener('keyup', filterUsers);
+
+
+</script>
+
+</body>
